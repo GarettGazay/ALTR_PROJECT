@@ -1,0 +1,4 @@
+# Required dependencies
+streamlit
+numpy
+pandas

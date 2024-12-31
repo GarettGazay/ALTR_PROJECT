@@ -1,8 +1,9 @@
-# Transportation Scheduling App with Reinforcement Learning
+# ALTR: Advantage Leveraging Transportation Reinforcement 
+Transportation Scheduling App with Reinforcement Learning
 
 ## Overview
 
-This project implements a transportation scheduling system using reinforcement learning (RL) to optimize the distribution of rides across available assets. The goal is to efficiently allocate rides while minimizing mileage, maximizing time efficiency, and balancing the ride distribution across assets.
+ALTR is a transportation scheduling system using reinforcement learning (RL) to optimize the distribution of rides across available assets. The goal is to efficiently allocate rides while minimizing mileage, maximizing time efficiency, and balancing the ride distribution across assets.
 
 ## Key Features
 
@@ -29,8 +30,7 @@ The following metrics demonstrate the efficiency and effectiveness of the schedu
    - Metric: Distribution balance score (variance in ride assignments), ride assignments per asset, percentage of assets utilized.
    - The load balance reward establishes a baseline logic, supporting the other reward priorities to maximize efficiency, and balance all rewards evenly toward solving the transportation scheduling problem for NEMT.
 
-4. **Reward Convergence** (Optional): Measures how quickly the RL agent converges to an optimal policy during training.
-   - Metric: Number of episodes for reward stabilization, improvement in reward over time. -->
+
 
 <!-- ## Setup Instructions
 
@@ -986,14 +986,11 @@ The training process uses a flavor of the Reinforcement Learning algorithm Proxi
 
 ## Metrics Tracked
 
-### **1. Scheduling Metrics**
-
-- **Ride Completion Rate:** Percentage of assigned rides successfully scheduled without conflicts.
-- **On-Time Performance:** Proportion of rides completed within the scheduled time window.
-- **Ride Balancing:** Variance or standard deviation of rides distributed across assets.
+### **1. Ride Completion Rate:**
+- Depending on shift durations and specific rule parameters around time allowances, mileage restrictions, etc., there can be a small set of rides that go unscheduled for a given set.
 
 ### **2. Efficiency Metrics**
-
+![Ride Assignments Animation](./graphs/efficiency_metrics.png)
 - **Miles Per Ride:** Average distance traveled per ride.
 - **Idle Time Minimization:** Percentage of time assets spend idle during their shifts.
 - **Average Utilization Rate:** Time spent on rides versus total available shift time for assets.

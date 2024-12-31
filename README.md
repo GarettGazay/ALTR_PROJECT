@@ -990,16 +990,21 @@ The training process uses a flavor of the Reinforcement Learning algorithm Proxi
 - Depending on shift durations and specific rule parameters around time allowances, mileage restrictions, etc., there can be a small set of rides that go unscheduled for a given set.
 
 ### **2. Efficiency Metrics**
-![Ride Assignments Animation](./graphs/efficiency_metrics.png)
 - **Miles Per Ride:** Average distance traveled per ride.
 - **Idle Time Minimization:** Percentage of time assets spend idle during their shifts.
 - **Average Utilization Rate:** Time spent on rides versus total available shift time for assets.
+![Ride Assignments Animation](./graphs/efficiency_metrics.png)
 
-### **3. Cost Metrics**
 
-- **Fuel Cost Reduction:** Savings from optimized routing.
+### **3. Cost Reduction**
+- **Fuel Cost Reduction:** The model solves the problem of maximizing fuel efficiency by custering rides based on mileage, long legs will often lead to clusters, but time composition is the primary determing factor that influences location outcomes.
+
 - **Driver Hours Reduction:** Hours saved through efficient scheduling.
-- **Skipped Ride Penalty Reduction:** Decrease in penalties incurred from skipped rides.
+
+- **Skipped Rides:** Rides are sometimes skipped by the agent if it can't fit those rides into an optimal long term plan, leaving human schedulers the task of adjusting outside the quantified space of the model, since there are quantifiable rules, and non-quantifiable ones which are often better left to humans for the time being. There are ways of mitigating the need for human intervention, like a cooperative multi-agent system, which has special rules for each agent, and also produces a "what if" scenario to humans if there are not enough assets for example, an agent can produce a snapshot of what the schedule *could* look like with additional assets. This part of the plan for future versions.
+
+   <img src="./animations/ride_clustering.gif" style="width: 80%; " > 
+
 
 ### **4. Scalability Metrics**
 

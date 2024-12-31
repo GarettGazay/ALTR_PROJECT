@@ -1001,24 +1001,34 @@ The training process uses a flavor of the Reinforcement Learning algorithm Proxi
 
 - **Driver Hours Reduction:** Hours saved through efficient scheduling.
 
-- **Skipped Rides:** Rides are sometimes skipped by the agent if it can't fit those rides into an optimal long term plan, leaving human schedulers the task of adjusting outside the quantified space of the model, since there are quantifiable rules, and non-quantifiable ones which are often better left to humans for the time being. There are ways of mitigating the need for human intervention, like a cooperative multi-agent system, which has special rules for each agent, and also produces a "what if" scenario to humans if there are not enough assets for example, an agent can produce a snapshot of what the schedule *could* look like with additional assets. This part of the plan for future versions.
+
 
    <img src="./animations/ride_clustering.gif" style="width: 80%; " > 
 
 
-### **4. Scalability Metrics**
+### **4. Scalability**
 
-- **Number of Rides Scheduled Per Episode:** Handles increasing ride volume efficiently.
-- **Time to Converge:** Speed at which RL agents learn optimal policies.
-- **Inference Time:** Time taken to generate schedules in real-time.
+- **Time to Converge:** Convergence of the current version of the model takes approximately 140,000 steps, improvement is seen every 20,000.
+- **Inference Time:** Each schedule on the current hardware used takes about 1 minute (with multi-loading)
 
-### **5. Robustness Metrics**
+### **5. Performance in Edge Cases:**
 
-- **Performance in Edge Cases:** Scheduling with limited assets or peak times.
-- **Success Rate After Skipping Rides:** Effectiveness in handling skipped rides.
-- **Reward Trends:** Cumulative reward growth over training episodes.
+-  Edge cases are handled through the reward system. If the agent is insufficiently incentivized, it passes the task to a human scheduler. The model adapts by selecting high-mileage rides that lead to clusters of low-mileage, time-efficient rides, ultimately generating a substantial reward. It also waits for low-mileage opportunities when no other rewards are available, maximizing cumulative reward. For example, if an asset drops off at a dialysis clinic and no other rewards are present, the agent waits for the next advantageous time reward, creating small gaps that offer flexibility to human schedulers while improving overall efficiency.
 
 ---
+
+### **6. Human Intervention**
+- **Skipped Rides:** The agent sometimes skips rides if they can't be fit into an optimal long-term plan, leaving human schedulers to handle adjustments outside the model's rules. While there are quantifiable rules, some non-quantifiable ones are better managed by humans for now. Future versions will aim to reduce human intervention through a cooperative multi-agent system, where each agent has special rules and can generate "what if" scenarios, such as showing how the schedule might look with additional assets when there aren't enough available.
+
+
+---
+
+### **7. Multi-Loading**
+
+- **Efficiency of Multi-Loading Assets:** Multi-loading enhances efficiency by strategically pairing compatible rides into "batches," which the agent then processes as a single unit. This approach minimizes the likelihood of skipped rides by ensuring that each asset operates at its fullest potential, without overlooking opportunities for pairing that might otherwise go unused. By grouping rides in a way that optimizes mileage, time and load balance, the system reduces inefficiencies and allows for better use of available assets, ultimately leading to a smoother, more streamlined scheduling process. However a positional multi-load and pre-load system is being planned for future versions.
+
+### **8. Pre-Loading and Asset Ride Assignment**
+- Pre-loading is an upcoming feature designed to assign specific rides to designated assets, with the goal of enabling preference-based scheduling. This feature is not fully tested or implemented, but will be integrated into the system in future versions.
 
 ## Visualizations
 

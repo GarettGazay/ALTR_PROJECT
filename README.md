@@ -56,9 +56,9 @@ Coming soon <span style="font-size: 2em;">👨‍🔬</span>
    ``` -->
 
 ## Overview
-The following data is sourced from a real-life ambulance company that uses ALTR in its daily operations. While the rider names are fictional, the data reflects real-world scenarios. The model handles several situational variables to the best of its ability. For example, time gaps often occur due to a shortage of rides in certain areas, particularly between 6 AM and 9 AM. These gaps result from low demand during those hours for this company and timeframe. In real scheduling scenarios, human dispatchers typically fill these gaps with same-day or day-prior requests. The system is designed to eliminate the tedium of manual scheduling, allowing dispatchers to focus on more creative tasks, rather than spending hours on repetitive scheduling work. The model currently integrates standard trips, multi-loaded trips, and pre-scheduled trips. Special rides, such as gurney transports, are being developed but are not yet implemented.
+The following data is sourced from a real-life ambulance company that uses ALTR in its daily operations. While the rider names are fictional, the data reflects real-world scenarios. The agent handles several situational variables to the best of its ability. For example, time gaps often occur due to a shortage of rides in certain areas, particularly between 6 AM and 9 AM. These gaps result from low demand during those hours for this company and timeframe. In real scheduling scenarios, human dispatchers typically fill these gaps with same-day or day-prior requests. The system is designed to eliminate the tedium of manual scheduling, allowing dispatchers to focus on more creative tasks, rather than spending hours on repetitive scheduling work. The agent currently integrates standard trips, multi-loaded trips, and pre-scheduled trips. Special rides, such as gurney transports, are being developed but are not yet implemented.
 
-The model is given certain allowances to break the rules, so in the scheduled data we may see sitations where a an appointment time, and a pickup time for the next ride are very close together, this is due to the local proximity, and buffer time allowances.
+The agent is given certain allowances to break the rules, so in the scheduled data we may see sitations where a an appointment time, and a pickup time for the next ride are very close together, this is due to the local proximity, and buffer time allowances.
 
 ## How It Works
 
@@ -931,18 +931,7 @@ The training process uses a flavor of the Reinforcement Learning algorithm Proxi
     </td>
 
   </tr>
-    <!-- <tr>
-      <td style="text-align: center;">
-      <img src="./graphs/load_balance_reward_avg.svg" alt="load_balance_reward_avg.svg" width="300" />
-      <div style="margin-left:60px;">Load Balance Reward Avg</div>
-    </td>
-    <td style="text-align: center;">
-      <img src="./graphs/on_time_rewards.svg" alt="On-Time Performance Reward Avg.svg" width="300" />
-      <div style="margin-left:40px;">On-Time Performance Reward Avg</div>
-    </td>
- 
-  </tr>
-   -->
+
   
 </table>
 
@@ -955,7 +944,7 @@ The training process uses a flavor of the Reinforcement Learning algorithm Proxi
 
 <!-- ## Usage
 
-1. **Training the Model:**
+1. **Training the agent:**
    Run the training script to train RL agents:
 
    ```bash
@@ -963,7 +952,7 @@ The training process uses a flavor of the Reinforcement Learning algorithm Proxi
    ```
 
 2. **Evaluating Performance:**
-   Test the trained model on new data:
+   Test the trained agent on new data:
 
    ```bash
    python src/main.py --evaluate
@@ -996,158 +985,49 @@ The training process uses a flavor of the Reinforcement Learning algorithm Proxi
 ![Ride Assignments Animation](./graphs/efficiency_metrics.png)
 
 
-### **3. Cost Reduction**
-- **Fuel Cost Reduction:** The model solves the problem of maximizing fuel efficiency by custering rides based on mileage, long legs will often lead to clusters, but time composition is the primary determing factor that influences location outcomes.
+### **3. Distance Efficiency and Agent Behavior**
 
-- **Driver Hours Reduction:** Hours saved through efficient scheduling.
+   <img src="./animations/ride_clustering.gif" style="width: 100%;" > 
 
+Above, we can see the agent's scheduling decisions for each asset. Notice that the agent focuses on clustering rides together, and that long trips tend to lead to clusters of rides. It’s important to note that the agent will select rides further away if time rewards can be enhanced by combining them with available mileage and load balance rewards, ultimately achieving a higher cumulative reward. 
 
+The agent is able to use historical traffic patterns to very closely predict the approximate travel time at a given time day and even along a given route based on several features within the dataset. This allows the agent's decisions to be more in line with reality.
 
-   <img src="./animations/ride_clustering.gif" style="width: 80%; " > 
+### **4. Cost Reduction**
+- **Fuel Cost Reduction:** The agent solves the problem of maximizing fuel efficiency by custering rides based on mileage, long legs will often lead to clusters, but time composition is the primary determing factor that influences location outcomes.
 
+- **Driver Hours Reduction:** From June 2024 to December 2024, while the number of drivers has remained relatively stable, the focus has shifted toward improving the quality of work. The company using ALTR has started emphasizing hiring practices that prioritize driver capability, particularly their ability to meet the schedules generated by the agent. Over time, this approach may reduce some labor costs, but it is more likely to result in an increase in the number of drivers as improved efficiency drives company growth.
 
-### **4. Scalability**
+### **5. Scalability**
 
 - **Time to Converge:** Convergence of the current version of the model takes approximately 140,000 steps, improvement is seen every 20,000.
 - **Inference Time:** Each schedule on the current hardware used takes about 1 minute (with multi-loading)
 
-### **5. Performance in Edge Cases:**
+### **6. Performance in Edge Cases:**
 
--  Edge cases are handled through the reward system. If the agent is insufficiently incentivized, it passes the task to a human scheduler. The model adapts by selecting high-mileage rides that lead to clusters of low-mileage, time-efficient rides, ultimately generating a substantial reward. It also waits for low-mileage opportunities when no other rewards are available, maximizing cumulative reward. For example, if an asset drops off at a dialysis clinic and no other rewards are present, the agent waits for the next advantageous time reward, creating small gaps that offer flexibility to human schedulers while improving overall efficiency.
-
----
-
-### **6. Human Intervention**
-- **Skipped Rides:** The agent sometimes skips rides if they can't be fit into an optimal long-term plan, leaving human schedulers to handle adjustments outside the model's rules. While there are quantifiable rules, some non-quantifiable ones are better managed by humans for now. Future versions will aim to reduce human intervention through a cooperative multi-agent system, where each agent has special rules and can generate "what if" scenarios, such as showing how the schedule might look with additional assets when there aren't enough available.
-
+-  Edge cases are handled through the reward system. If the agent is insufficiently incentivized, it passes the task to a human scheduler. The agent adapts by selecting high-mileage rides that lead to clusters of low-mileage, time-efficient rides, ultimately generating a substantial reward. It also waits for low-mileage opportunities when no other rewards are available, maximizing cumulative reward. For example, if an asset drops off at a dialysis clinic and sufficient rewards are present from that state, the agent waits for the next advantageous time reward, creating small gaps that offer flexibility to human schedulers while ensuring baseline efficiency.
 
 ---
 
-### **7. Multi-Loading**
+### **7. Human Intervention**
+- **Skipped Rides:** The agent sometimes skips rides if they can't be fit into an optimal long-term plan, leaving human schedulers to handle adjustments outside the agent's rules. While there are quantifiable rules, some non-quantifiable ones are better managed by humans for now. Future versions will aim to reduce human intervention through a cooperative multi-agent system, where each agent has special rules and can generate "what if" scenarios, such as showing how the schedule might look with additional assets when there aren't enough available.
+
+
+---
+
+### **8. Multi-Loading**
 
 - **Efficiency of Multi-Loading Assets:** Multi-loading enhances efficiency by strategically pairing compatible rides into "batches," which the agent then processes as a single unit. This approach minimizes the likelihood of skipped rides by ensuring that each asset operates at its fullest potential, without overlooking opportunities for pairing that might otherwise go unused. By grouping rides in a way that optimizes mileage, time and load balance, the system reduces inefficiencies and allows for better use of available assets, ultimately leading to a smoother, more streamlined scheduling process. However a positional multi-load and pre-load system is being planned for future versions.
 
-### **8. Pre-Loading and Asset Ride Assignment**
+### **9. Pre-Loading and Asset Ride Assignment**
 - Pre-loading is an upcoming feature designed to assign specific rides to designated assets, with the goal of enabling preference-based scheduling. This feature is not fully tested or implemented, but will be integrated into the system in future versions.
 
-## Visualizations
-
-### **Key Graphs and Charts**
-
-1. **Ride Balancing:** Bar chart showing rides per asset.
-2. **Reward Trends:** Line graph of cumulative rewards over episodes.
-3. **On-Time Performance:** Pie chart or bar graph of completed vs. late rides.
-4. **Miles Per Ride:** Histogram or scatter plot of ride distances.
-5. **Heatmap:** Correlation between metrics like utilization and rewards.
-
-### **Sample Code for Plotting**
-
-```python
-import matplotlib.pyplot as plt
-
-def plot_rewards(rewards):
-    plt.figure(figsize=(10, 5))
-    plt.plot(rewards, label="Cumulative Rewards")
-    plt.xlabel("Episodes")
-    plt.ylabel("Rewards")
-    plt.title("Reward Growth Over Time")
-    plt.legend()
-    plt.grid()
-    plt.savefig("data/rewards_plot.png")
-    plt.show()
-
-# Example usage
-reward_data = [100, 150, 200, 250, 300]
-plot_rewards(reward_data)
-```
-
----
-
 ## Interactive Dashboard
+Coming soon <span style="font-size: 2em;">👨‍🔬</span>
 
-An optional interactive dashboard is available to explore metrics dynamically.
-
-### **Setup**
-
-Install Streamlit:
-
-```bash
-pip install streamlit
-```
-
-### **Dashboard Code**
-
-```python
-import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
-
-# Load data
-ride_data = pd.read_csv("data/runtime_log.csv")
-reward_data = pd.read_csv("data/rewards_log.csv")
-
-# Sidebar options
-st.sidebar.title("Metrics Explorer")
-metric = st.sidebar.selectbox("Select a metric to visualize", ["Rewards", "Utilization"])
-
-if metric == "Rewards":
-    st.title("Reward Growth Over Time")
-    st.line_chart(reward_data['reward'])
-
-elif metric == "Utilization":
-    st.title("Asset Utilization")
-    st.bar_chart(ride_data.groupby('asset')['utilization'].mean())
-```
-
-Run the dashboard:
-
-```bash
-streamlit run src/visualization/dashboard.py
-```
-
----
-
-## Automating Metrics Logging
-
-### **Log Rewards to CSV**
-
-```python
-import csv
-
-def log_rewards(reward, episode, filename="data/rewards_log.csv"):
-    with open(filename, mode='a', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow([episode, reward])
-
-# Example usage
-log_rewards(250, 1)
-log_rewards(300, 2)
-```
-
----
-
-## Jupyter Notebooks
-
-### **`training_visualization.ipynb`**
-
-- Analyze training progress: reward trends, ride balancing metrics.
-
-### **`exploratory_analysis.ipynb`**
-
-- Explore parameter effects on ride distribution and asset availability.
-
----
 
 ## Future Work
 
 - Integration with real-world datasets for live scheduling.
 - Enhanced scalability to handle thousands of rides.
 - Improved multi-agent collaboration for global optimization.
-
----
-
-## Technologies Used
-
-- **Reinforcement Learning:** Stable-Baselines3
-- **Visualization:** Matplotlib, Seaborn, Streamlit
-- **Data Processing:** Pandas, NumPy

@@ -1000,7 +1000,7 @@ The agent is able to use historical traffic patterns to very closely predict the
 
 ### **5. Scalability**
 
-- **Time to Converge:** Convergence of the current version of the model takes approximately 140,000 steps, improvement is seen every 20,000.
+- **Time to Converge:** Convergence in the current version takes approximately 140,000 steps, improvement is observed every 20,000.
 - **Inference Time:** Each schedule on the current hardware used takes about 1 minute (with multi-loading)
 
 ### **6. Performance in Edge Cases:**
@@ -1021,6 +1021,11 @@ The agent is able to use historical traffic patterns to very closely predict the
 
 ### **9. Pre-Loading and Asset Ride Assignment**
 - Pre-loading is an upcoming feature designed to assign specific rides to designated assets, with the goal of enabling preference-based scheduling. This feature is not fully tested or implemented, but will be integrated into the system in future versions.
+
+### **10. Scheduled Breaks**
+
+- **Integrated Breaks for Planned Downtime:** Not yet fully implemented, future versions will include user specified breaks for each asset. The agent will seamlessly schedule around these time blocks with the same level of efficiency in mileage and OTP.
+
 
 ## Interactive Dashboard
 Coming soon <span style="font-size: 2em;">👨‍🔬</span>

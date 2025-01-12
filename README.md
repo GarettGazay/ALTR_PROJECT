@@ -1,50 +1,54 @@
-# ALTR: Advantage Leveraging Transportation Reinforcement 
-Transportation Scheduling App with Reinforcement Learning
+# Advantage Leveraging Transit Reinforcement 
+
+
+### Feel free to ask questions! 
+<img src="./images/raised_hand.png" style="width:5%; margin-left:80px;">
 
 ## Overview
 
-ALTR is a transportation scheduling system using reinforcement learning (RL) to optimize the distribution of rides across available assets. The goal is to efficiently allocate rides while minimizing mileage, maximizing time efficiency, and balancing the ride distribution across assets.
-
-## Key Features
-
-- **Single-Agent RL System**: A single agent schedules all rides for an asset (Non-Emergency Ambulance).
-- **RL-based Scheduling**: The agent learns to allocate rides based on available resources (time, distance, ride duration) while optimizing for efficiency.
-- **Mileage Minimization**: The app aims to minimize total mileage covered by the asset, improving fuel efficiency and reducing operational costs.
-- **Time Efficiency**: The system ensures that rides are completed within their designated time windows to improve service quality.
-- **Ride Distribution**: The app optimizes ride allocation to avoid underusing assets, ensuring efficient use of resources.
-- **Multi-Loading**: The app looks for multi-loading opporunities and will load assets with multiple riders for a single trip under the correct conditions.
-
-## Key Metrics
-
-The following metrics demonstrate the efficiency and effectiveness of the scheduling system:
-
-1. **Mileage Minimization**: Measures how well the agent minimizes total mileage traveled by the asset.
-
-   - Metric: Total mileage per episode, average mileage per ride, optimal distance ratio.
-
-2. **Time Efficiency**: Tracks how well the system schedules rides within the assigned time windows.
-
-   - Metric: Average ride completion time, percentage of rides completed on time, and time-to-completion ratio.
-
-3. **Ride Distribution Across Assets**: Ensures that rides are balanced across all assets to avoid underloading any single asset.
-   - Metric: Distribution balance score (variance in ride assignments), ride assignments per asset, percentage of assets utilized.
-   - The load balance reward establishes a baseline logic, supporting the other reward priorities to maximize efficiency, and balance all rewards evenly toward solving the transportation scheduling problem for NEMT.
+ALTR is a transportation scheduling system using Reinforcement Learning (RL) to optimize ride distribution across available assets. The goal is to efficiently allocate rides while minimizing mileage, maximizing time efficiency, and balancing distribution across assets.
 
 
+## But First... What is Reinforcement Learning?
 
-<!-- ## Setup Instructions
+Reinforcement Learning (RL) is a type of machine learning where an agent learns to make decisions by interacting with an environment. The agent takes actions, observes the results, and receives feedback in the form of rewards or penalties. Over time, the agent improves its behavior to maximize cumulative rewards.
 
-To run the ALTR demo, follow these steps:
+### Example: A Robot in a Maze
 
-### Prerequisites
-Coming soon <span style="font-size: 2em;">👨‍🔬</span> -->
+Imagine a robot navigating a maze to find a charging station before its battery runs out. The robot (agent) explores the maze (environment) and decides which direction to move (action). If it gets closer to the charging station, it receives a reward; if it moves farther away or wastes battery, it gets no reward (or a penalty). Through trial and error, the robot learns the optimal paths to reach the charging station efficiently, avoiding dead ends and unnecessary detours.
 
-<!-- - Python 3.9+
-- Required libraries:
-  - `gym`
-  - `numpy`
-  - `stable-baselines3` (or your chosen RL library)
-  - `pytorch` -->
+This process mirrors RL, where the agent learns strategies to achieve its goal by maximizing rewards.
+
+<img src="./images/robot_maze.jpg" style="width:60%;">
+
+## Single-Agent RL Scheduling System 
+(As opposed to a Multi-Agent system) <br>
+
+This system is designed for Non-Emergency Ambulance services. The agent learns to allocate rides efficiently by considering factors like time, distance, and load balancing. It generates an optimized plan for the entire day, taking into account all assets and rides. With finely tuned learning parameters, the agent continuously improves, adapting to daily, weekly, and monthly trends.
+
+### Side note on learning parameters: 
+- Simply put, the agent learns more when it is improving and less when it is not. This approach encourages positive exploration while preventing the agent from reinforcing bad behaviors or getting stuck in sub-optimal outcomes.
+
+## Feature Definitions
+
+- **Mileage Minimization**: The agent aims to reduce total mileage, improving fuel efficiency and lowering operational costs.
+
+- **Time Efficiency**:  The agent leverages temporal localization to create an efficient time plan across the entire day of rides.
+
+- **Ride Distribution (Load Balancing)**: Optimizes allocation to prevent underutilization of assets.
+
+- **Multi-Loading**: Identifies opportunities to load multiple riders onto a single trip under suitable conditions.
+
+## Upcoming Features
+
+- **Assigned Breaks**: Allows the user to assign designated breaks for drivers, while optimizing the schedule around them. (Lunch breaks, etc)
+
+- **Pre-loading**: Assigns fixed rides, such as school pickups, and optimizes schedules around them. (Example is a public school contract where the TP wants a certain set of assets to be assigned to those rides.)
+
+- **Live Dispatch**: Dynamically adjusts schedules to accommodate new ride requests or cancellations. For example, a TP has a pool of unassigned rides. Whenever there is a change in the environment (e.g., a cancellation or a shift in the load state of assets), the agent identifies new load opportunities that maximize rewards. TPs will also be able to use this feature to assess whether accepting a ride is feasible or not.
+
+- **Ghost Assets**: Simulates additional assets to show how unassigned rides could be managed. A Ghost Asset’s schedule can be outsourced to a subcontractor or used to advise the TP about the need to aquire or utilize additional vehicles.
+
 
 ## Installation
 Coming soon <span style="font-size: 2em;">👨‍🔬</span>
@@ -55,19 +59,62 @@ Coming soon <span style="font-size: 2em;">👨‍🔬</span>
    cd transportation-scheduling
    ``` -->
 
-## Overview
+<!-- ## Overview
 The following data is sourced from a real-life ambulance company that uses ALTR in its daily operations. While the rider names are fictional, the data reflects real-world scenarios. The agent handles several situational variables to the best of its ability. For example, time gaps often occur due to a shortage of rides in certain areas, particularly between 6 AM and 9 AM. These gaps result from low demand during those hours for this company and timeframe. In real scheduling scenarios, human dispatchers typically fill these gaps with same-day or day-prior requests. The system is designed to eliminate the tedium of manual scheduling, allowing dispatchers to focus on more creative tasks, rather than spending hours on repetitive scheduling work. The agent currently integrates standard trips, multi-loaded trips, and pre-scheduled trips. Special rides, such as gurney transports, are being developed but are not yet implemented.
 
-The agent is given certain allowances to break the rules, so in the scheduled data we may see sitations where a an appointment time, and a pickup time for the next ride are very close together, this is due to the local proximity, and buffer time allowances.
+The agent is given certain allowances to break the rules, so in the scheduled data we may see sitations where a an appointment time, and a pickup time for the next ride are very close together, this is due to the local proximity, and buffer time allowances. -->
 
 ## How It Works
 
 - The agent receives a list of unordered rides.
-- It evaluates each ride based on constraints such as asset shift windows, mileage restrictions, and time parameters.
+- It evaluates each ride based on constraints such as asset shift windows, mileage and time rules.
 - Using this evaluation, the agent builds a comprehensive schedule for the entire day, aiming to assign rides to assets in a way that maximizes efficiency and minimizes wasted resources.
 - The agent strategically assigns rides to assets, balancing workload distribution, and optimizing for both individual asset performance and overall system efficiency.
 
 In this single-agent system, the RL agent is responsible for scheduling all rides within the given time slots (shift duration of assets). The agent interacts with the environment, receiving several observations, then makes decisions to allocate rides in a way that minimizes mileage, completes rides on time, and balances the distribution of rides across available assets. 
+
+
+### Two Types of Ride Scheduling Methods
+
+The process of scheduling rides using reinforcement learning can be approached through two distinct methods, each with its own strengths and limitations:
+
+---
+# Current Capabilities and Future Vision
+
+### **1. Non-Positional One-to-One Scheduling (Current Method)**  
+This is the current implementation where the agent processes rides in a **one-to-one mapping**. The system works as follows:
+- **Workflow**: The agent loops through all available rides sequentially. Over the course of training, it learns an optimal scheduling policy for the entire day.  
+
+- **Strengths**:  
+  - Simplicity: The method is straightforward, as the agent focuses on scheduling each ride individually with a long-term plan.
+  - Effective for Specific Categories: It performs well for wheelchair rides.
+
+- **Limitations**:  
+  - Narrow Scope: The system lacks the ability to dynamically account for the real-time state of all assets, limiting its adaptability.  
+
+  - Category-Specific: Currently, it is tailored to wheelchair rides and does not generalize to other ride types like **gurney** or **ambulatory** transports.
+
+---
+
+### **2. Dynamic Timing and Resource Optimization (Future Method)**  
+DTRO is an advanced approach that incorporates a **state-aware scheduling strategy** that dynamically considers the load state of all assets throughout the scheduling process:
+- **Workflow**: The agent tracks the real-time load state of every asset (e.g., vehicles, available capacity) at each step of the scheduling process. It uses this information to adapt and make optimal decisions for allocating rides.  
+- **Feedback-Driven Optimization**: As the agent trains, it receives detailed feedback about successful and unsuccessful scheduling actions. This feedback enables it to refine its policy and create rules for optimizing **all ride categories** (e.g., wheelchair, gurney, and ambulatory).  
+- **Strengths**:  
+  - **Comprehensive Scheduling**: By considering the state of all assets, the system can make rules for diverse ride types, ensuring efficient utilization of resources.  
+  - **Dynamic Adaptability**: The agent can react to changes in asset availability or ride requirements in real-time.  
+  - **Unified System**: Unlike the one-to-one method, this approach allows a single agent to manage multiple categories, eliminating the need for separate agents.  
+- **Challenges**:  
+  - Increased Complexity: The system requires more computational resources and training time to handle the expanded state space and decision-making process.  
+  - Developmental Stage: This method is still under active development and has not yet been fully implemented.  
+
+---
+
+### **Looking Ahead**  
+While the non-positional one-to-one method provides a solid foundation for wheelchair ride scheduling, its limitations highlight the need for a more advanced approach. The dynamic asset state positional load method represents the future of ride scheduling by enabling the agent to holistically manage diverse categories of transport in a unified system. This evolution will pave the way for more efficient, adaptable, and comprehensive ride scheduling solutions.
+
+
+
 
 ### Unordered Rides
 <details>
@@ -884,7 +931,9 @@ In this single-agent system, the RL agent is responsible for scheduling all ride
 
 ## Training
 
-The training process uses a flavor of the Reinforcement Learning algorithm Proximal Policy Optimization (PPO) that retains long term memory of best practices from day to day using a carefully tuned learning rate. The agent is rewarded for completing rides on time, minimizing mileage, and distributing rides efficiently across the assets. The agent learns from its interactions with the environment and gradually improves its scheduling policy.
+<!-- The training process uses a flavor of the Reinforcement Learning algorithm Proximal Policy Optimization (PPO) that retains long term memory of best practices from day to day using a carefully tuned learning rate. The agent is rewarded for completing rides on time, minimizing mileage, and distributing rides efficiently across the assets. The agent learns from its interactions with the environment and gradually improves its scheduling policy. -->
+
+Each episode (iteration) during training, the agent loops the rides, taking actions that are an advantage in maximizing the cumulative reward.
 
 ![Ride Assignments Animation](./animations/ride_assignments_with_rewards.gif)
 

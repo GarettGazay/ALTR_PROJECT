@@ -5,7 +5,6 @@
 <img src="./images/raised_hand.png" style="width:5%; margin-left:80px;">
 
 ## About Me
-Here’s your introduction in bullet point form, excluding the location reference:
 
 - Garett Gazay: AI Systems Engineer and EDI billing specialist.  
 - Over 17 years of experience in the NEMT industry.  

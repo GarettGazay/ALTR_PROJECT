@@ -6,12 +6,12 @@
 
 ## About Me
 
-- Garett Gazay: AI Systems Engineer and EDI billing specialist.  
-- Over 17 years of experience in the NEMT industry.  
-- Developed a critical automated billing and accounting solution.  
-- Created an AI-driven system for optimizing ride scheduling.  
-- Passionate about automation and AI research.  
-- Focused on advancements that enhance efficiency and scalability.  
+Here’s the revised version using "my background is in":  
+
+- My background is in AI systems engineering and EDI billing solutions.  
+- I have over 17 years of expertise in the NEMT industry.  
+- I design and implement automated billing and accounting systems tailored for NEMT operations.  
+- I develop AI-driven systems to optimize ride scheduling and resource management.  
 
 ## Overview
 

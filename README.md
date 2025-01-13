@@ -12,7 +12,7 @@
   
 ## Overview
 
-This project is a transportation scheduling system using Reinforcement Learning (RL) to optimize ride distribution across available assets. The goal is to efficiently allocate rides while minimizing mileage, maximizing time efficiency, and balancing distribution across assets.
+I will be presenting a transportation scheduling system I created using Reinforcement Learning (RL) to optimize ride distribution across available assets. The goal is to efficiently allocate rides while minimizing mileage, maximizing time efficiency, and balancing distribution across assets.
 
 
 ## But First... What is Reinforcement Learning?

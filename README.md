@@ -6,10 +6,10 @@
 ## About Me
 
 - My background is in AI systems engineering and EDI billing solutions.  
-- I have over 17 years of expertise in the NEMT industry.  
-- I design and implement automated billing and accounting systems tailored for NEMT operations.  
+- I have over 17 years of expertise in the NEMT industry.   
 - I develop AI-driven systems to optimize ride scheduling and resource management.  
-
+- I develop automated billing and accounting systems tailored for NEMT operations.
+  
 ## Overview
 
 This project is a transportation scheduling system using Reinforcement Learning (RL) to optimize ride distribution across available assets. The goal is to efficiently allocate rides while minimizing mileage, maximizing time efficiency, and balancing distribution across assets.

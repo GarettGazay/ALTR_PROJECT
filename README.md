@@ -1,4 +1,4 @@
-# An AI Rides Management System for NEMT
+# AI-Driven Transportation Management for NEMT
 ---
 ### Feel free to ask questions! 
 <img src="./images/raised_hand.png" style="width:5%; margin-left:80px;">

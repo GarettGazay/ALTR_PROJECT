@@ -6,8 +6,6 @@
 
 ## About Me
 
-Here’s the revised version using "my background is in":  
-
 - My background is in AI systems engineering and EDI billing solutions.  
 - I have over 17 years of expertise in the NEMT industry.  
 - I design and implement automated billing and accounting systems tailored for NEMT operations.  

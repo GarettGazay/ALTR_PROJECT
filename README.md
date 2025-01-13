@@ -3,6 +3,7 @@
 ---
 ### Feel free to ask questions! 
 <img src="./images/raised_hand.png" style="width:5%; margin-left:80px;">
+
 ## About Me
 
 - My background is in AI systems engineering and EDI billing solutions.  

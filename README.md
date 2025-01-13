@@ -1,5 +1,4 @@
-# Advantage Leveraging Transit Reinforcement 
-### An overview of AI for NEMT
+# An AI Rides Management System for NEMT
 ---
 ### Feel free to ask questions! 
 <img src="./images/raised_hand.png" style="width:5%; margin-left:80px;">
@@ -13,7 +12,7 @@
 
 ## Overview
 
-ALTR is a transportation scheduling system using Reinforcement Learning (RL) to optimize ride distribution across available assets. The goal is to efficiently allocate rides while minimizing mileage, maximizing time efficiency, and balancing distribution across assets.
+This project is a transportation scheduling system using Reinforcement Learning (RL) to optimize ride distribution across available assets. The goal is to efficiently allocate rides while minimizing mileage, maximizing time efficiency, and balancing distribution across assets.
 
 
 ## But First... What is Reinforcement Learning?

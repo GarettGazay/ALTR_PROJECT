@@ -93,7 +93,7 @@ The process of scheduling rides using reinforcement learning can be approached t
 | **Naive Sequential Process Scheduling (Baseline)**   | RL-Optimized, Single Ride Assignments | Moderate      | ❌ No                     | ❌ No                         | ⚡ Fast             | ✅ 25 vans, 220 rides  |
 | **Dynamic Timing and Resource Optimization (DTRO)**  | RL-Optimized, Multi-Load & Positional Awareness | High | ✅ Yes                    | ✅ Yes                        | 🕒 Slower          | ✅ 25 vans, 220 rides  |
 
-> **Note:** Both algorithms use **Reinforcement Learning (RL)** but differ in how they handle **multi-loading and positionality**. DTRO introduces **load balancing and vehicle positioning**, making it more effective for large-scale scheduling.
+> **Note:** Both algorithms use **Reinforcement Learning (RL)** but differ in how they handle **multi-loading and positionality**. DTRO introduces **load ordering and load position state**, making it more effective for large-scale scheduling.
 
 
 

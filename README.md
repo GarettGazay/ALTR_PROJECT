@@ -1,5 +1,7 @@
 # AI-Driven Scheduling for NEMT
 
+**Code for this project is protected - inquire for demonstration**
+
 ## About Me
 - My name is Garett Gazay, I'm an engineer currently based in Las Vegas.
 - My background is in AI systems engineering and EDI billing solutions.  

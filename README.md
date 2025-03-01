@@ -88,6 +88,12 @@ The agent is given certain allowances to break the rules, so in the scheduled da
 
 The process of scheduling rides using reinforcement learning can be approached through two distinct methods, each with its own strengths and limitations:
 
+| **Algorithm**                              | **Assignment Logic**         | **Efficiency** | **Considers Load Ordering?** | **Considers Positionality?** |
+|--------------------------------------------|------------------------------|---------------|------------------------------|------------------------------|
+| **Naive Sequential Process Scheduling (Baseline)** | First-Come, First-Served      | Low           | ❌ No                         | ❌ No                         |
+| **Advanced RL-Based Scheduling**           | Optimized w/ RL & Heuristics | High          | ✅ Yes                        | ✅ Yes                        |
+
+
 ---
 ## Current Capabilities and Future Vision
 

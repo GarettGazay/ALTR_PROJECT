@@ -1,4 +1,4 @@
-# AI-Driven Transportation Management for NEMT
+# AI-Driven Scheduling for NEMT
 
 ## About Me
 - My name is Garett Gazay, I'm an engineer currently based in Las Vegas.

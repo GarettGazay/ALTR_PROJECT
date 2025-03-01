@@ -91,7 +91,7 @@ The process of scheduling rides using reinforcement learning can be approached t
 | **Algorithm**                                         | **Assignment Logic**         | **Efficiency** | **Considers Load Ordering?** | **Considers Positionality?** |
 |-------------------------------------------------------|------------------------------|---------------|------------------------------|------------------------------|
 | **Naive Sequential Process Scheduling (Baseline)**   | First-Come, First-Served      | Low           | ❌ No                         | ❌ No                         |
-| **Dynamic Timing and Resource Optimization (DTRO)**  | Optimized w/ RL & Heuristics | High          | ✅ Yes                        | ✅ Yes                        |
+| **Dynamic Timing and Resource Optimization (DTRO)**  | Advanced Logic & Heuristics | High          | ✅ Yes                        | ✅ Yes                        |
 
 
 

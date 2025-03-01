@@ -1,8 +1,5 @@
 # AI-Driven Transportation Management for NEMT
 
-### Feel free to ask questions! 
-<img src="./images/raised_hand.png" style="width:5%; margin-left:80px;">
-
 ## About Me
 - My name is Garett Gazay, I'm an engineer currently based in Las Vegas.
 - My background is in AI systems engineering and EDI billing solutions.  

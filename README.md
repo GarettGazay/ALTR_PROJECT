@@ -2,8 +2,8 @@
 
 **Code for this project is protected - inquire for demonstration**
 
-🚨 **Proprietary Notice**
-This repository provides a high-level overview of a reinforcement learning-based scheduling system. While the animation showcases ride assignments and reward feedback, it does not expose the underlying optimization logic, algorithmic refinements, or proprietary methodologies.
+🚨 **Proprietary Notice**<br>
+This repository provides a high-level overview of a reinforcement learning-based scheduling system. While the animations showcase ride assignments and reward feedback, it does not expose the underlying optimization logic, algorithmic refinements, or proprietary methodologies.
 
 
 ## About Me

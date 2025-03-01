@@ -88,10 +88,13 @@ The agent is given certain allowances to break the rules, so in the scheduled da
 
 The process of scheduling rides using reinforcement learning can be approached through two distinct methods, each with its own strengths and limitations:
 
-| **Algorithm**                                         | **Assignment Logic**         | **Efficiency** | **Considers Load Ordering?** | **Considers Positionality?** |
-|-------------------------------------------------------|------------------------------|---------------|------------------------------|------------------------------|
-| **Naive Sequential Process Scheduling (Baseline)**   | First-Come, First-Served      | Low           | ❌ No                         | ❌ No                         |
-| **Dynamic Timing and Resource Optimization (DTRO)**  | Advanced Logic & Heuristics | High          | ✅ Yes                        | ✅ Yes                        |
+| **Algorithm**                                         | **Assignment Logic**               | **Efficiency** | **Supports Multi-Load?** | **Considers Positionality?** | **Training Time**  | **Benchmark Capacity** |
+|-------------------------------------------------------|------------------------------------|---------------|--------------------------|------------------------------|--------------------|-------------------------|
+| **Naive Sequential Process Scheduling (Baseline)**   | RL-Optimized, Single Ride Assignments | Moderate      | ❌ No                     | ❌ No                         | ⚡ Fast             | ✅ 25 vans, 220 rides  |
+| **Dynamic Timing and Resource Optimization (DTRO)**  | RL-Optimized, Multi-Load & Positional Awareness | High | ✅ Yes                    | ✅ Yes                        | 🕒 Slower          | ✅ 25 vans, 220 rides  |
+
+> **Note:** Both algorithms use **Reinforcement Learning (RL)** but differ in how they handle **multi-loading and positionality**. DTRO introduces **load balancing and vehicle positioning**, making it more effective for large-scale scheduling.
+
 
 
 
